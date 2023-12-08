@@ -11,10 +11,15 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.1.0",
+    "axios": "^1.6.2",
     "nuxt": "^3.8.2",
     "sass": "^1.69.5",
     "typescript": "^5.3.3",
     "vue": "^3.3.10",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.5.1"
   }
 }
