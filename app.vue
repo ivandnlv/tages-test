@@ -4,7 +4,13 @@
   </NuxtLayout>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const router = useRouter();
+
+onMounted(() => {
+  router.push("/systemi-hranenia/komplekti-stellajnih-sistem");
+});
+</script>
 
 <style lang="scss">
 * {

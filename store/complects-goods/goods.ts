@@ -10,6 +10,10 @@ interface GoodsFilters {
 export const useGoodsStore = defineStore("goodsStore", () => {
   const goods = ref<GoodsItem[] | null>(null);
   const filteredGoods = ref<GoodsItem[] | null>(null);
+  const goodsCart = ref<GoodsItem[]>([]);
+  const goodsFavorites = ref<GoodsItem[]>([]);
+
+  const afterMount = ref(false);
 
   const initialFilters: GoodsFilters = {
     sort: "DEFAULT",
@@ -60,6 +64,34 @@ export const useGoodsStore = defineStore("goodsStore", () => {
     }
   };
 
+  const addToCart = (item: GoodsItem) => {
+    goodsCart.value.push(item);
+  };
+
+  const removeFromCart = (item: GoodsItem) => {
+    goodsCart.value = goodsCart.value.filter(
+      (cartItem) => cartItem.id !== item.id
+    );
+  };
+
+  const addToFavs = (item: GoodsItem) => {
+    goodsFavorites.value.push(item);
+  };
+
+  const removeFromFavs = (item: GoodsItem) => {
+    goodsFavorites.value = goodsFavorites.value.filter(
+      (favsItem) => favsItem.id !== item.id
+    );
+  };
+
+  const setCart = (cart: GoodsItem[]) => {
+    goodsCart.value = cart;
+  };
+
+  const setFavs = (favs: GoodsItem[]) => {
+    goodsFavorites.value = favs;
+  };
+
   const fetchGoodsItems = async () => {
     try {
       const { data }: { data: Ref<GoodsItem[]> } = await useFetch(
@@ -76,6 +108,41 @@ export const useGoodsStore = defineStore("goodsStore", () => {
     }
   };
 
+  watch(
+    goodsCart,
+    () => {
+      if (afterMount.value) {
+        localStorage.setItem("cart", JSON.stringify(goodsCart.value));
+      }
+    },
+    { deep: true }
+  );
+
+  watch(
+    goodsFavorites,
+    () => {
+      if (afterMount.value) {
+        localStorage.setItem("favorites", JSON.stringify(goodsFavorites.value));
+      }
+    },
+    { deep: true }
+  );
+
+  onMounted(() => {
+    const localCart = localStorage.getItem("cart");
+    const localFavs = localStorage.getItem("favorites");
+
+    if (localCart) {
+      setCart(JSON.parse(localCart));
+    }
+
+    if (localFavs) {
+      setFavs(JSON.parse(localFavs));
+    }
+
+    afterMount.value = true;
+  });
+
   return {
     changeFilter,
     fetchGoodsItems,
@@ -84,5 +151,13 @@ export const useGoodsStore = defineStore("goodsStore", () => {
     goods,
     sortGoods,
     filters,
+    goodsCart,
+    goodsFavorites,
+    addToCart,
+    addToFavs,
+    removeFromCart,
+    removeFromFavs,
+    setCart,
+    setFavs,
   };
 });

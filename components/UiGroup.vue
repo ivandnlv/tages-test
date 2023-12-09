@@ -80,7 +80,7 @@ const toggleGroupVisible = () => (isGroupVisible.value = !isGroupVisible.value);
       transition: transform $animation-duration ease-in-out;
       &._up {
         position: absolute;
-        z-index: 10;
+        z-index: 101;
         top: 8px;
         right: 16px;
         transform: rotate(180deg);
@@ -99,6 +99,7 @@ const toggleGroupVisible = () => (isGroupVisible.value = !isGroupVisible.value);
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 100;
     button {
       display: block;
       border: none;

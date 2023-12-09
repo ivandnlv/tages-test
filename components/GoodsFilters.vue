@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import { storeToRefs } from "pinia";
 import type { SortObject } from "~/store/complects-goods";
 import { useComplectsGoodsStore, useGoodsStore } from "~/store/complects-goods";
 import type { GroupItem } from "~/types/ui";
@@ -33,8 +34,8 @@ const {
   setCurrentSortObject,
   fetchMaterials,
 } = complectsGoodsStore;
-const { currentSortObject, currentMaterial, allMaterials, materialStatus } =
-  toRefs(complectsGoodsStore);
+const { currentSortObject, currentMaterial, allMaterials } =
+  storeToRefs(complectsGoodsStore);
 
 const goodsStore = useGoodsStore();
 const { changeFilter, filterGoodsByMaterial, sortGoods } = goodsStore;
