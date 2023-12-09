@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 import type { SortObject } from "~/store/complects-goods";
-import { useComplectsGoodsStore } from "~/store/complects-goods";
+import { useComplectsGoodsStore, useGoodsStore } from "~/store/complects-goods";
 import type { GroupItem } from "~/types/ui";
 
 const complectsGoodsStore = useComplectsGoodsStore();
@@ -36,8 +36,12 @@ const {
 const { currentSortObject, currentMaterial, allMaterials, materialStatus } =
   toRefs(complectsGoodsStore);
 
+const goodsStore = useGoodsStore();
+const { changeFilter, filterGoodsByMaterial, sortGoods } = goodsStore;
+
 const changeSort = (item: SortObject) => {
   setCurrentSortObject(item);
+  sortGoods(item.value);
 };
 
 const onMaterialsClick = () => {
@@ -46,6 +50,8 @@ const onMaterialsClick = () => {
 
 const changeMaterial = (item: GroupItem) => {
   setCurrentMaterial(item);
+  changeFilter("material", Number(item.value));
+  filterGoodsByMaterial(Number(item.value));
 };
 </script>
 
@@ -59,3 +65,4 @@ const changeMaterial = (item: GroupItem) => {
   }
 }
 </style>
+~/store/complects-goods/complects-goods~/store/complects-goods/complects-goods

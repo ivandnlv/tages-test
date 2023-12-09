@@ -79,6 +79,10 @@ const toggleGroupVisible = () => (isGroupVisible.value = !isGroupVisible.value);
     img {
       transition: transform $animation-duration ease-in-out;
       &._up {
+        position: absolute;
+        z-index: 10;
+        top: 8px;
+        right: 16px;
         transform: rotate(180deg);
       }
     }
@@ -92,6 +96,7 @@ const toggleGroupVisible = () => (isGroupVisible.value = !isGroupVisible.value);
   }
   &__items {
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
     button {

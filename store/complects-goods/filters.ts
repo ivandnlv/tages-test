@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import type { GroupItem } from "~/types/ui";
-import axios from "axios";
 import type { Material } from "~/types";
+import { SERVER_URL } from "~/utils/constants";
 
-type SortTypes = "ASC" | "DESC" | "DEFAULT";
+export type SortTypes = "ASC" | "DESC" | "DEFAULT";
 
 export type SortObject = {
   value: SortTypes;
@@ -43,7 +43,7 @@ export const useComplectsGoodsStore = defineStore("complectsGoodsStore", () => {
 
     try {
       const { data: materials }: { data: Ref<Material[]> } = await useFetch(
-        "http://localhost:8000/materials"
+        `${SERVER_URL}/materials`
       );
 
       allMaterials.value.push(
