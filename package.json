@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "concurrently \"nuxt build\" \"json-server --watch db.json --port 8000\"",
+    "start": "nuxt build",
     "dev": "nuxt dev",
     "dev:server": "json-server --watch db.json --port 8000",
     "generate": "nuxt generate",

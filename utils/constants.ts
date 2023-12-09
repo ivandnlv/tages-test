@@ -1,3 +1,3 @@
-const SERVER_URL = "http://localhost:8000";
+const SERVER_URL = "https://tages-test-api-git-main-ivandnlv.vercel.app/";
 
 export { SERVER_URL };
