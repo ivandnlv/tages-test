@@ -1,75 +1,28 @@
-# Nuxt 3 Minimal Starter
+# Тестовое задание для компании TAGES
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+В данном тестовом задании я закрепил свои знания и умения в Nuxt 3 / Vue 3
 
-## Setup
+Технологии, использованные в проекте:
++ Nuxt 3
++ Typescript
++ Pinia
++ Scss
 
-Make sure to install the dependencies:
+## Запуск:
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+Если не установлен yarn:
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
+npm i -g yarn
+```
+```
+yarn
+```
+```
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+![image](https://github.com/ivandnlv/tages-test/assets/91759945/98e52a38-60b3-4acd-b4c0-7e840315be85)
 
-Build the application for production:
+## Содержание задания
+![image](https://github.com/ivandnlv/tages-test/assets/91759945/ce8f24bc-ed14-4aea-b39a-8a099c205c80)
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
