@@ -34,33 +34,30 @@ export const useGoodsStore = defineStore("goodsStore", () => {
     }
   };
 
-  const filterGoodsByMaterial = (materialValue: GoodsFilters["material"]) => {
-    if (goods.value && materialValue !== 0) {
-      filteredGoods.value = goods.value.filter(
-        (goodsItem) => goodsItem.material === materialValue
-      );
-    } else {
-      filteredGoods.value = goods.value;
-    }
-  };
+  const applyFiltersToGoods = () => {
+    const { sort, material } = filters.value;
 
-  const sortGoods = (method: SortTypes) => {
-    if (goods.value && method === "DEFAULT") {
-      filterGoodsByMaterial(filters.value.material);
-    }
+    if (goods.value) {
+      const localGoods = goods.value.filter((item) => {
+        if (material !== 0) {
+          if (item.material === material) return item;
+        } else {
+          return item;
+        }
+      });
 
-    if (goods.value && method === "ASC") {
-      filterGoodsByMaterial(filters.value.material);
-      filteredGoods.value = (filteredGoods.value ?? goods.value)
-        .slice()
-        .sort((a, b) => a.price.current_price - b.price.current_price);
-    }
+      if (sort === "DEFAULT") filteredGoods.value = localGoods;
+      if (sort === "ASC") {
+        filteredGoods.value = localGoods
+          .slice()
+          .sort((a, b) => a.price.current_price - b.price.current_price);
+      }
 
-    if (goods.value && method === "DESC") {
-      filterGoodsByMaterial(filters.value.material);
-      filteredGoods.value = (filteredGoods.value ?? goods.value)
-        .slice()
-        .sort((a, b) => b.price.current_price - a.price.current_price);
+      if (sort === "DESC") {
+        filteredGoods.value = localGoods
+          .slice()
+          .sort((a, b) => b.price.current_price - a.price.current_price);
+      }
     }
   };
 
@@ -146,10 +143,9 @@ export const useGoodsStore = defineStore("goodsStore", () => {
   return {
     changeFilter,
     fetchGoodsItems,
-    filterGoodsByMaterial,
+    applyFiltersToGoods,
     filteredGoods,
     goods,
-    sortGoods,
     filters,
     goodsCart,
     goodsFavorites,

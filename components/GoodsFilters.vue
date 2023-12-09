@@ -38,11 +38,12 @@ const { currentSortObject, currentMaterial, allMaterials } =
   storeToRefs(complectsGoodsStore);
 
 const goodsStore = useGoodsStore();
-const { changeFilter, filterGoodsByMaterial, sortGoods } = goodsStore;
+const { changeFilter, applyFiltersToGoods } = goodsStore;
 
 const changeSort = (item: SortObject) => {
   setCurrentSortObject(item);
-  sortGoods(item.value);
+  changeFilter("sort", item.value);
+  applyFiltersToGoods();
 };
 
 const onMaterialsClick = () => {
@@ -52,7 +53,7 @@ const onMaterialsClick = () => {
 const changeMaterial = (item: GroupItem) => {
   setCurrentMaterial(item);
   changeFilter("material", Number(item.value));
-  filterGoodsByMaterial(Number(item.value));
+  applyFiltersToGoods();
 };
 </script>
 

@@ -1,15 +1,8 @@
 <template>
   <div class="goods">
-    <div class="goods__items" v-if="!filteredGoods">
+    <div class="goods__items">
       <GoodsItemCard
         v-for="goodsItem in goods"
-        :goods-item="goodsItem"
-        :key="goodsItem.id"
-      />
-    </div>
-    <div class="goods__items" v-else>
-      <GoodsItemCard
-        v-for="goodsItem in filteredGoods"
         :goods-item="goodsItem"
         :key="goodsItem.id"
       />
@@ -18,14 +11,12 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
-import { useGoodsStore } from "~/store/complects-goods";
+interface GoodsItemsProps {
+  goods: GoodsItem[];
+}
 
-const goodsStore = useGoodsStore();
-const { fetchGoodsItems } = goodsStore;
-const { goods, filteredGoods } = storeToRefs(goodsStore);
-
-await fetchGoodsItems();
+const props = defineProps<GoodsItemsProps>();
+const { goods } = toRefs(props);
 </script>
 
 <style lang="scss" scoped>
