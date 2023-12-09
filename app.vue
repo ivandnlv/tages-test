@@ -8,7 +8,7 @@
 const router = useRouter();
 
 onMounted(() => {
-  router.push("/systemi-hranenia/komplekti-stellajnih-sistem");
+  navigateTo("/systemi-hranenia/komplekti-stellajnih-sistem");
 });
 </script>
 
@@ -23,5 +23,8 @@ onMounted(() => {
 h1 {
   font-size: 36px;
   font-weight: 600;
+  @media (max-width: 650px) {
+    text-align: center;
+  }
 }
 </style>

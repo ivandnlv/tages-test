@@ -23,6 +23,12 @@ await fetchGoodsItems();
 
 <style lang="scss" scoped>
 .complects {
+  @media (max-width: 650px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   &__goods {
     margin-top: 23px;
   }

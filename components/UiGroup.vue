@@ -1,5 +1,5 @@
 <template>
-  <div class="group">
+  <div class="group" ref="groupRef">
     <span class="group__title"><slot /></span>
     <div class="group__wrapper">
       <div class="group__item group__current" @click="toggleGroupVisible">
@@ -35,6 +35,8 @@ interface UiGroupProps {
   allGroupItems: GroupItem[];
 }
 
+const groupRef = ref<HTMLDivElement | null>(null);
+
 const props = defineProps<UiGroupProps>();
 const emit = defineEmits<UiGroupEmits>();
 const { output, allGroupItems } = toRefs(props);
@@ -46,7 +48,26 @@ const onOutputChange = (groupItem: GroupItem) => {
 
 const isGroupVisible = ref(false);
 
-const toggleGroupVisible = () => (isGroupVisible.value = !isGroupVisible.value);
+const handler = (e: Event) => {
+  if (
+    groupRef.value &&
+    e.target instanceof HTMLElement &&
+    !groupRef.value.contains(e.target)
+  ) {
+    isGroupVisible.value = false;
+    document.removeEventListener("mousedown", handler);
+  }
+};
+
+const toggleGroupVisible = () => {
+  if (!isGroupVisible.value) {
+    document.addEventListener("mousedown", handler);
+    isGroupVisible.value = true;
+  } else {
+    document.removeEventListener("mousedown", handler);
+    isGroupVisible.value = false;
+  }
+};
 </script>
 
 <style lang="scss" scoped>

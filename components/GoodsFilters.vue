@@ -60,10 +60,17 @@ const changeMaterial = (item: GroupItem) => {
 <style lang="scss" scoped>
 .filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   width: 100%;
   &__item {
     width: 288px;
+  }
+  @media (max-width: 650px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
   }
 }
 </style>
