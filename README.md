@@ -8,6 +8,19 @@
 + Pinia
 + Scss
 
+## Запуск:
+
+Если не установлен yarn:
+```
+npm i -g yarn
+```
+```
+yarn
+```
+```
+yarn dev
+```
+
 ![image](https://github.com/ivandnlv/tages-test/assets/91759945/98e52a38-60b3-4acd-b4c0-7e840315be85)
 
 ## Содержание задания
