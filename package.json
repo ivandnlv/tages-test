@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "start": "concurrently \"nuxt build\" \"json-server --watch db.json --port 8000\"",
     "dev": "nuxt dev",
     "dev:server": "json-server --watch db.json --port 8000",
     "generate": "nuxt generate",
@@ -21,6 +21,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.5.1"
+    "@pinia/nuxt": "^0.5.1",
+    "concurrently": "^8.2.2"
   }
 }
