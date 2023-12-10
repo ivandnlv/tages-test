@@ -2,13 +2,13 @@
   <div class="group" ref="groupRef">
     <span class="group__title"><slot /></span>
     <div class="group__wrapper">
-      <div class="group__item group__current" @click="toggleGroupVisible">
+      <button class="group__item group__current" @click="toggleGroupVisible">
         <span>{{ output.title }}</span>
         <NuxtImg
           src="/icons/arrow-down.svg"
           :class="isGroupVisible ? '_up' : null"
         />
-      </div>
+      </button>
       <div class="group__items" v-if="isGroupVisible">
         <button
           class="group__item"
@@ -87,11 +87,16 @@ const toggleGroupVisible = () => {
     position: relative;
   }
   &__item {
+    display: block;
+    border: none;
     background: #f2f2f2;
     font-size: 14px;
     font-weight: 400;
     padding: 10px 16px;
     width: 100%;
+    span {
+      text-align: left;
+    }
   }
   &__current {
     cursor: pointer;
