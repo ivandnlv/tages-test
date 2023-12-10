@@ -8,6 +8,8 @@
 + Pinia
 + Scss
 
+Api для задания находится в этом [репозитории](https://github.com/ivandnlv/tages-test-api) (там файл db.json, в котором объединены два файла items.json и material.json) 
+
 ## Запуск:
 
 Если не установлен yarn:
